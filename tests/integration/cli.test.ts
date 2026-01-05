@@ -38,4 +38,33 @@ describe('CLI Commands', () => {
     expect(output).toContain('slides-gen');
     expect(output).toContain('AI-powered slide generation');
   });
+
+  it('should list available commands in help', () => {
+    const output = execSync('npm run dev -- --help', {
+      encoding: 'utf-8',
+      stdio: 'pipe',
+    });
+    expect(output).toContain('init');
+    expect(output).toContain('generate');
+    expect(output).toContain('preview');
+    expect(output).toContain('validate');
+  });
+
+  it('should show init command help', () => {
+    const output = execSync('npm run dev -- init --help', {
+      encoding: 'utf-8',
+      stdio: 'pipe',
+    });
+    expect(output).toContain('Initialize a new slides project');
+  });
+
+  it('should show generate command help', () => {
+    const output = execSync('npm run dev -- generate --help', {
+      encoding: 'utf-8',
+      stdio: 'pipe',
+    });
+    expect(output).toContain('Generate slides from markdown');
+    expect(output).toContain('--output');
+    expect(output).toContain('--format');
+  });
 });
